@@ -39,16 +39,6 @@ SELECT species, AVG(escape_attempts) AS avg_escape_attempts FROM animals WHERE d
 SELECT AVG(weight_kg) AS average_weight FROM animals;  
 SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals GROUP BY species;
 
--- Make id autoincremented primary key
-ALTER TABLE animals ADD PRIMARY KEY (id);
-
--- Remove the "species" column
-ALTER TABLE animals DROP COLUMN species;
-
-
--- Add the "species_id" and "owner_id" columns as foreign keys
-ALTER TABLE animals ADD COLUMN species_id INTEGER REFERENCES species(id), ADD COLUMN owner_id INTEGER REFERENCES owners(id);
-
 -- Queries to answer questions
 
 -- What animals belong to Melody Pond?
@@ -64,8 +54,7 @@ SELECT o.full_name, a.name FROM owners o LEFT JOIN animals a ON o.id = a.owner_i
 SELECT s.name AS species, COUNT(*) AS count FROM animals a INNER JOIN species s ON a.species_id = s.id GROUP BY s.name;
 
 -- List all Digimon owned by Jennifer Orwell.
-SELECT a.name FROM animals a INNER JOIN species s ON a.species_id = s.id INNER JOIN owners o ON a.owner_id = o.id WHERE o.full_name = 'Jennifer Orwell' AND s.name = 'Digimon';
-
+SELECT a.name FROM animals a JOIN species s ON a.species_id = s.id JOIN owners o ON a.owner_id = o.id WHERE o.full_name = 'Jennifer Orwell' AND s.name = 'Digimon';
 -- List all animals owned by Dean Winchester that haven't tried to escape.
 SELECT a.name FROM animals a INNER JOIN owners o ON a.owner_id = o.id WHERE o.full_name = 'Dean Winchester' AND a.escape_attempts = 0;
 
