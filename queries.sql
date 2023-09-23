@@ -124,13 +124,16 @@ LEFT JOIN specializations s ON vt.id = s.vet_id AND a.species_id = s.species_id
 WHERE s.vet_id IS NULL;
 
 -- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
-SELECT s.name AS recommended_specialty
-FROM visits v
-JOIN animals a ON v.animal_id = a.id
-JOIN vets vt ON v.vet_id = vt.id
-JOIN specializations sp ON vt.id = sp.vet_id
-JOIN species s ON sp.species_id = s.id
-WHERE vt.name = 'Maisy Smith'
-GROUP BY s.name
-ORDER BY COUNT(*) DESC
+SELECT s.id AS species_id, s.name AS species_name, SUM(visits_count) AS species_visits_count
+FROM species s
+INNER JOIN (
+    SELECT a.species_id, COUNT(a.id) AS visits_count
+    FROM animals a
+    INNER JOIN visits v ON a.id = v.animal_id
+    WHERE v.vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
+    GROUP BY a.species_id
+) AS species_visits
+ON s.id = species_visits.species_id
+GROUP BY s.id, s.name
+ORDER BY species_visits_count DESC
 LIMIT 1;
