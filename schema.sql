@@ -6,7 +6,7 @@ CREATE TABLE animals (
     date_of_birth date,
     escape_attempts INTEGER,
     neutered boolean,
-    weight_kg decimal(4,2),
+    weight_kg decimal(8,2),
     species varchar(50)
 );
 
@@ -52,3 +52,5 @@ CREATE TABLE visits (
     visit_date DATE,
     PRIMARY KEY (vet_id, animal_id, visit_date)
 );
+
+--Performance activity
