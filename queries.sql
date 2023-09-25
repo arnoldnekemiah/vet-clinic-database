@@ -137,3 +137,14 @@ ON s.id = species_visits.species_id
 GROUP BY s.id, s.name
 ORDER BY species_visits_count DESC
 LIMIT 1;
+
+--Performance
+
+-- ANALYZE visits;
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+
+-- ANALYZE visits;
+EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+
+--for email;
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';

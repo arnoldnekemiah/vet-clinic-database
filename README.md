@@ -86,6 +86,10 @@ In order to run this project you need:
 - Twitter: [@twitterhandle](https://twitter.com/arnoldikonde)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/arnoldnekemiah)
 
+👤 **Bhekisile Jozi**
+- GitHub: [@Bhekisile](https://github.com/Bhekisile)
+- LinkedIn: [BhekisileJozi](https://www.linkedin.com/in/bhekisile-jozi-b9823369/)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
