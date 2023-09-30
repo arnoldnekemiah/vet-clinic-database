@@ -1,3 +1,4 @@
+![image](https://github.com/arnoldnekemiah/vet-clinic-database/assets/42886828/1d77fe88-f8c4-4b3b-b285-a12bb02200fa)
 
 ## Getting Started
 
